@@ -1,0 +1,31 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="math" />
+          <option value="exc1.print" />
+          <option value="exc1.*" />
+          <option value="exc2.*" />
+          <option value="exc3.*" />
+          <option value="exc4.*" />
+          <option value="exc5.*" />
+          <option value="student_health.*" />
+          <option value="datetime" />
+          <option value="age.*" />
+          <option value="project.*" />
+          <option value="employee.*" />
+          <option value="webscraping.*" />
+          <option value="re" />
+          <option value="email_validation.*" />
+          <option value="request" />
+          <option value="divar.*" />
+          <option value="requests" />
+          <option value="exc6.*" />
+          <option value="login.*" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
