@@ -1,8 +1,10 @@
 from django.shortcuts import render , get_object_or_404
 
-from blog.models import Post
+from blog.models import Post, Comment
+from blog.forms import CommentForm
 import datetime
 from django.core.paginator import Paginator , EmptyPage , PageNotAnInteger
+from django.contrib import messages
 # Create your views here.
 
 def blog_view(requests , **kwargs):
@@ -35,12 +37,23 @@ def blog_view(requests , **kwargs):
 
 
 def blog_single(requests,pid):
+    if requests.method == 'POST':
+        form = CommentForm(requests.POST)
+        if form.is_valid():
+            form.save()
+            messages.add_message(requests,messages.SUCCESS , 'your ticket submitted successfully')
+        else:
+            messages.add_message(requests,messages.ERROR , 'your ticket didnt submitted')
+            
     post = get_object_or_404(Post ,pk=pid , status=1)
     if post:
         post.counted_views = post.counted_views +1
         post.save()
-    
-    context = {'post':post }
+        
+    comments = Comment.objects.filter(post = post.id , approved = True)
+        
+    form = CommentForm()
+    context = {'post':post , 'comments':comments , 'form':form }
     return render(requests, 'blog/blog-single.html',context)
 
 
