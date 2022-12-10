@@ -35,12 +35,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('website.urls')),
     path('blog/' , include('blog.urls')),
+    path('accounts/' , include('accounts.urls')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
          name='django.contrib.sitemaps.views.sitemap'),
     path(r'^robots\.txt', include('robots.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
     path('summernote/', include('django_summernote.urls')),
-    #path(r'^django_popup_view_field/',include('django_popup_view_field.urls', namespace="django_popup_view_field")),
     path('captcha/', include('captcha.urls')),
     
     

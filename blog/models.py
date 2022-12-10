@@ -25,6 +25,7 @@ class Post(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     published_date = models.DateTimeField(null=True) 
+    login_require = models.BooleanField(default = False)
     
     
     class Meta:
@@ -46,6 +47,7 @@ class Comment(models.Model):
     created_date = models.DateTimeField(auto_now_add= True)
     updated_date = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
+   
     
     def __str__(self):
         return self.name

@@ -5,6 +5,8 @@ from blog.forms import CommentForm
 import datetime
 from django.core.paginator import Paginator , EmptyPage , PageNotAnInteger
 from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 # Create your views here.
 
 def blog_view(requests , **kwargs):
@@ -49,12 +51,14 @@ def blog_single(requests,pid):
     if post:
         post.counted_views = post.counted_views +1
         post.save()
-        
-    comments = Comment.objects.filter(post = post.id , approved = True)
-        
-    form = CommentForm()
-    context = {'post':post , 'comments':comments , 'form':form }
-    return render(requests, 'blog/blog-single.html',context)
+    
+    if not post.login_require :   
+        comments = Comment.objects.filter(post = post.id , approved = True)    
+        form = CommentForm()
+        context = {'post':post , 'comments':comments , 'form':form }
+        return render(requests, 'blog/blog-single.html',context)
+    else:
+        return HttpResponseRedirect(reverse('accounts:login'))
 
 
 

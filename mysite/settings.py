@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'django_summernote' ,
     'django_popup_view_field',
     'captcha',
+    'accounts'
     
     
 ]
